@@ -12,10 +12,14 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   const firstVariant = product.variants[0];
+
+  // Correção: Remove caracteres inválidos da URL
+  const cleanImageUrl = firstVariant.imageUrl.replace(/[{}"]/g, "");
+
   return (
     <Link href="/" className="flex flex-col gap-4">
       <Image
-        src={firstVariant.imageUrl}
+        src={cleanImageUrl} // Usa a URL corrigida
         alt={firstVariant.name}
         width={200}
         height={200}
