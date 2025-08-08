@@ -31,23 +31,28 @@ const ProductVariantPage = async ({ params }: ProductVariantPageProps) => {
   if (!productVariant) {
     return notFound();
   }
+
+  // Limpa possíveis caracteres inválidos da URL da imagem
+  const cleanImageUrl = productVariant.imageUrl.replace(/[{}"]/g, "");
+
   const likelyProducts = await db.query.productTable.findMany({
     where: eq(productTable.categoryId, productVariant.product.categoryId),
     with: {
       variants: true,
     },
   });
+
   return (
     <>
       <Header />
       <div className="flex flex-col space-y-6">
         <Image
-          src={productVariant.imageUrl}
+          src={cleanImageUrl}
           alt={productVariant.name}
           sizes="100vw"
           height={0}
           width={0}
-          className="h-auto w-full object-cover"
+          className="h-auto w-full rounded-3xl"
         />
 
         <div className="px-5">
@@ -58,7 +63,6 @@ const ProductVariantPage = async ({ params }: ProductVariantPageProps) => {
         </div>
 
         <div className="px-5">
-          {/* DESCRIÇÃO */}
           <h2 className="text-lg font-semibold">
             {productVariant.product.name}
           </h2>

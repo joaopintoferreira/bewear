@@ -29,14 +29,13 @@ const AddToCartButton = ({
   });
   return (
     <Button
-      className="rounded-full"
+      className="flex items-center gap-2 rounded-full"
       size="lg"
       variant="outline"
       disabled={isPending}
       onClick={() => mutate()}
     >
-      {isPending && <Loader2 className="animate-spin" />}
-      Adicionar à sacola
+      {isPending ? <Loader2 className="animate-spin" /> : "Adicionar à sacola"}
     </Button>
   );
 };

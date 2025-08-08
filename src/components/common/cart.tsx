@@ -36,9 +36,10 @@ export const Cart = () => {
         </SheetHeader>
 
         <div className="flex h-full flex-col px-5 pb-5">
-          <div className="flex h-full max-h-full flex-col overflow-hidden">
+          {/* Ajuste aqui: defina max-h e remova overflow-hidden */}
+          <div className="flex h-full max-h-[400px] flex-col">
             <ScrollArea className="h-full">
-              <div className="flex h-full flex-col gap-8">
+              <div className="flex flex-col gap-8">
                 {cart?.items.map((item) => (
                   <CartItem
                     key={item.id}
@@ -87,5 +88,3 @@ export const Cart = () => {
     </Sheet>
   );
 };
-
-// SERVER ACTIONs

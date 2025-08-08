@@ -22,11 +22,14 @@ const CartItem = ({
   productVariantPriceInCents,
   quantity,
 }: CartItemProps) => {
+  // Limpa caracteres inválidos da URL da imagem
+  const cleanImageUrl = productVariantImageUrl.replace(/[{}"]/g, "");
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4">
         <Image
-          src={productVariantImageUrl}
+          src={cleanImageUrl}
           alt={productVariantName}
           width={78}
           height={78}
