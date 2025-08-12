@@ -14,13 +14,17 @@ import {
 } from "@/components/ui/dialog";
 
 const CheckoutSuccessPage = () => {
+  // Supondo que productVariantImageUrl seja a URL da imagem que precisa ser limpa
+  const productVariantImageUrl = "/illustration.svg"; // Esta é a URL original do seu código
+  const cleanImageUrl = productVariantImageUrl.replace(/[{}"]/g, "");
+
   return (
     <>
       <Header />
       <Dialog open={true} onOpenChange={() => {}}>
         <DialogContent className="text-center">
           <Image
-            src="/illustration.svg"
+            src={cleanImageUrl} // Aqui usamos a URL limpa
             alt="Success"
             width={300}
             height={300}
@@ -34,7 +38,7 @@ const CheckoutSuccessPage = () => {
 
           <DialogFooter>
             <Button className="rounded-full" size="lg">
-              Ver meus pedidos
+              <Link href="/my-orders">Ver meus pedidos</Link>
             </Button>
             <Button
               className="rounded-full"
